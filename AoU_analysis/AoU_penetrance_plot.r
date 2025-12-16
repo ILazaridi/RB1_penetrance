@@ -41,7 +41,7 @@ pie_chart <- carriers %>%
             position = position_stack(vjust = 0.5), size = 17) + 
   scale_color_identity() +
   labs(title = "", fill = NULL, size = 12) + 
-  scale_fill_manual(values = c("0" ="#47B847", "1" = "#A21702"), 
+  scale_fill_manual(values = c("0" ="#9DE0A6", "1" = "#A21702"), 
                     labels = c( "0" = "Do not have Rb/Eye cancer", "1" = "Have Rb/Eye cancer")) + 
   
   theme_void() + # removes axes, ticks, background grid
@@ -59,11 +59,16 @@ pie_chart <- carriers %>%
         legend.key = element_rect(fill = "black", color = "black"),
         
         # Ensure white background for saved output
-        panel.background = element_rect(fill = "white"),
-        plot.background  = element_rect(fill = "white")) # semi-transparent legend box
+        panel.background = element_rect(fill = "white", colour = NA, linewidth = 0),
+        plot.background  = element_rect(fill = "white", colour = NA, linewidth = 0)) # semi-transparent legend box
 
 
 pie_chart
 
+pie_chart_2 <- pie_chart +
+  theme(legend.position = "none")
+
 
 ggsave("penetrance_plot.png", plot = pie_chart, width = 16, height = 11, dpi = 600)
+ggsave("penetrance_plot_no_legend.png", plot = pie_chart_2, width = 15, height = 10, dpi = 600)
+
